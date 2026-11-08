@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Canteen Inventory</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>School Canteen</h1>
+          <span>Inventory System</span>
+        </div>
+
+        <nav class="main-nav">
+          <button class="nav-btn active" type="button" data-target="dashboard">Dashboard</button>
+          <button class="nav-btn" type="button" data-target="products">Products</button>
+          <button class="nav-btn" type="button" data-target="stock">Stock</button>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section id="dashboard" class="panel active">
+          <div class="panel-header">
+            <h2>Dashboard</h2>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <p>Total Products</p>
+              <h3 id="total-products">0</h3>
+            </div>
+            <div class="stat-card">
+              <p>Total Stock Quantity</p>
+              <h3 id="total-stock">0</h3>
+            </div>
+            <div class="stat-card">
+              <p>Total Inventory Value</p>
+              <h3 id="total-value">₱0</h3>
+            </div>
+          </div>
+
+          <div class="low-stock-box">
+            <h3>Low Stock Products</h3>
+            <ul id="low-stock-list">
+              <li>No low stock products.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="products" class="panel">
+          <div class="panel-header">
+            <h2>Product Management</h2>
+          </div>
+
+          <form id="product-form" class="form-card">
+            <div class="form-heading">
+              <h3>Product Details</h3>
+              <p>Add a new item or update an existing product.</p>
+            </div>
+            <div class="form-grid">
+              <label>
+                Product ID
+                <input id="product-id" type="text" placeholder="P001" />
+              </label>
+              <label>
+                Product Name
+                <input id="product-name" type="text" placeholder="Rice Meal" />
+              </label>
+              <label>
+                Price
+                <input id="product-price" type="number" min="0" step="0.01" placeholder="35" />
+              </label>
+              <label>
+                Quantity
+                <input id="product-quantity" type="number" min="0" step="1" placeholder="20" />
+              </label>
+              <label>
+                Minimum Stock Level
+                <input id="product-min-stock" type="number" min="0" step="1" placeholder="10" />
+              </label>
+            </div>
+
+            <p id="product-error" class="error-message"></p>
+
+            <div class="button-row">
+              <button id="product-submit" type="submit" class="primary-btn">Add Product</button>
+              <button id="cancel-edit" type="button" class="secondary-btn hidden">Cancel</button>
+            </div>
+          </form>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Min Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="product-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="stock" class="panel">
+          <div class="panel-header">
+            <h2>Stock Management</h2>
+          </div>
+
+          <form id="stock-form" class="form-card">
+            <div class="form-grid stock-grid">
+              <label>
+                Product
+                <select id="stock-product"></select>
+              </label>
+              <label>
+                Action
+                <select id="stock-action">
+                  <option value="add">Add Stock</option>
+                  <option value="remove">Remove Stock</option>
+                </select>
+              </label>
+              <label>
+                Quantity
+                <input id="stock-quantity" type="number" min="1" step="1" placeholder="10" />
+              </label>
+            </div>
+
+            <div class="stock-feedback">
+              <p id="stock-current-info" class="stock-current-info">Select a product to view its current stock.</p>
+              <p id="stock-success" class="success-message" aria-live="polite"></p>
+            </div>
+
+            <p id="stock-error" class="error-message"></p>
+
+            <div class="button-row">
+              <button type="submit" class="primary-btn">Update Stock</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./js/controller.js"></script>
+  </body>
+</html>
